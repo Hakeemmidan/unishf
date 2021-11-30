@@ -1,8 +1,10 @@
 # UNISHF
+
 (This is a frontend challenge for a company. UNISHF is a fictional name.)
 
 ## Features
-- __ specs
+
+- \_\_ specs
   - component
   - unit
 - `eslint`, `prettier`, and git hooks (using `husky`) for a consistent code style
