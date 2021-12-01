@@ -1,5 +1,6 @@
 module.exports = {
   root: true, // Make sure eslint picks up the config at the root of the directory
+  ignorePatterns: ['**/node_modules/**'],
   parserOptions: {
     ecmaVersion: 2020, // Use the latest ecmascript standard
     sourceType: 'module', // Allows using import/export statements
@@ -16,7 +17,8 @@ module.exports = {
     browser: true, // Enables browser globals like window and document
     amd: true, // Enables require() and define() as global variables as per the amd spec.
     node: true, // Enables Node.js global variables and Node.js scoping.
-    jest: true // Enables jest global variables.
+    jest: true, // Enables jest global variables.
+    es6: true // Enables all ECMAScript 6 features
   },
   extends: [
     'eslint:recommended',
