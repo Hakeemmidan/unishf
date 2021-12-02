@@ -47,7 +47,7 @@ const FilledStar = styled(AiFillStar)`
 
 const UnfilledStar = styled(AiOutlineStar)``;
 
-export const AllHeroes = ({ heroes }) => {
+export const HeroesTable = ({ heroes }) => {
   let navigate = useNavigate();
 
   return (
@@ -87,6 +87,6 @@ export const AllHeroes = ({ heroes }) => {
   );
 };
 
-AllHeroes.propTypes = {
+HeroesTable.propTypes = {
   heroes: PropTypes.arrayOf(PropTypes.object).isRequired
 };

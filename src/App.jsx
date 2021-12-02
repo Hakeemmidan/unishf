@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { themes } from './utils/themes';
-import { AllHeroes } from './pages/all_heroes/AllHeroes';
+import { AllHeroes } from './pages/heroes/Main';
 import { getHeroes } from './utils/mock_api';
 
 const Test2 = () => <div>Hello world from test 2 </div>;

@@ -15,3 +15,5 @@
   - You could add a new theme by
     - Adding a new root key to the themes object, with all your wanted colors/properties
     - Pass down (or use `React.useContext`) `App.jsx`'s `setTheme` to the place that would control the theme
+- The file structure for pages is the same as URL in the web app
+  - i.e. the components that show up for that URL route are placed in a folder that has the same path (nested under /pages)
