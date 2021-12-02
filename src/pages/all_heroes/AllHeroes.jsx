@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import styled from 'styled-components';
-import { theme } from '../../utils/theme';
 
 const Table = styled.table`
   border-collapse: collapse;
   margin: 0 2rem;
+  border: 0.07rem solid ${(props) => props.theme.colors.border};
 `;
 
 const Header = styled.th`
@@ -29,17 +30,26 @@ const TableRow = styled.tr`
   height: 2rem;
 `;
 
+const ClickableRow = styled(TableRow)`
+  &:hover {
+    cursor: pointer;
+    background-color: beige;
+  }
+`;
+
 const StarsContainer = styled.div`
   text-align: center;
 `;
 
 const FilledStar = styled(AiFillStar)`
-  fill: ${theme.mainLight.colors.primary};
+  fill: ${(props) => props.theme.colors.primary};
 `;
 
 const UnfilledStar = styled(AiOutlineStar)``;
 
 export const AllHeroes = ({ heroes }) => {
+  let navigate = useNavigate();
+
   return (
     <Table>
       <TableHead>
@@ -51,7 +61,7 @@ export const AllHeroes = ({ heroes }) => {
       </TableHead>
       <TableBody>
         {heroes.map((hero) => (
-          <TableRow key={`hero_${hero.id}`}>
+          <ClickableRow onClick={() => navigate(`/heroes/${hero.id}`)} key={`hero_${hero.id}`}>
             <DataCell>{hero.name}</DataCell>
             <DataCell>{hero.power}</DataCell>
             <DataCell>
@@ -65,7 +75,7 @@ export const AllHeroes = ({ heroes }) => {
                 })}
               </StarsContainer>
             </DataCell>
-          </TableRow>
+          </ClickableRow>
         ))}
         <TableRow>
           <DataCell></DataCell>
