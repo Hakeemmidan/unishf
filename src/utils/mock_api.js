@@ -16,7 +16,7 @@ export const getHeroes = () => {
         'https://cdn.britannica.com/w:400,h:300,c:crop/99/124299-050-4B4D509F/Linus-Torvalds-2012.jpg'
     },
     {
-      id: 2,
+      id: 3,
       name: 'Batman',
       power: 'Money',
       rating: 4,

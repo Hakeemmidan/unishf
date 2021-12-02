@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Table = styled.table`
@@ -17,50 +18,38 @@ const TableHead = styled.thead``;
 
 const TableBody = styled.tbody``;
 
-const TableRow = styled.tr``;
+const TableRow = styled.tr`
+  height: 30px;
+`;
 
-export const AllHeroes = () => {
+export const AllHeroes = ({ heroes }) => {
   return (
     <Table>
       <TableHead>
         <TableRow>
-          <Header>Company</Header>
-          <Header>Contact</Header>
-          <Header>Country</Header>
+          <Header>Name</Header>
+          <Header>Power</Header>
+          <Header>Rating</Header>
         </TableRow>
       </TableHead>
       <TableBody>
+        {heroes.map((hero) => (
+          <TableRow key={`hero_${hero.id}`}>
+            <DataCell>{hero.name}</DataCell>
+            <DataCell>{hero.power}</DataCell>
+            <DataCell>{hero.rating}</DataCell>
+          </TableRow>
+        ))}
         <TableRow>
-          <DataCell>Alfreds Futterkiste</DataCell>
-          <DataCell>Maria Anders</DataCell>
-          <DataCell>Germany</DataCell>
-        </TableRow>
-        <TableRow>
-          <DataCell>Centro comercial Moctezuma</DataCell>
-          <DataCell>Francisco Chang</DataCell>
-          <DataCell>Mexico</DataCell>
-        </TableRow>
-        <TableRow>
-          <DataCell>Ernst Handel</DataCell>
-          <DataCell>Roland Mendel</DataCell>
-          <DataCell>Austria</DataCell>
-        </TableRow>
-        <TableRow>
-          <DataCell>Island Trading</DataCell>
-          <DataCell>Helen Bennett</DataCell>
-          <DataCell>UK</DataCell>
-        </TableRow>
-        <TableRow>
-          <DataCell>Laughing Bacchus Winecellars</DataCell>
-          <DataCell>Yoshi Tannamuri</DataCell>
-          <DataCell>Canada</DataCell>
-        </TableRow>
-        <TableRow>
-          <DataCell>Magazzini Alimentari Riuniti</DataCell>
-          <DataCell>Giovanni Rovelli</DataCell>
-          <DataCell>Italy</DataCell>
+          <DataCell></DataCell>
+          <DataCell></DataCell>
+          <DataCell></DataCell>
         </TableRow>
       </TableBody>
     </Table>
   );
+};
+
+AllHeroes.propTypes = {
+  heroes: PropTypes.arrayOf(PropTypes.object).isRequired
 };
