@@ -1,31 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AllHeroes } from './pages/all_heroes/AllHeroes';
 import { getHeroes } from './utils/mock_api';
-import './App.css';
 
-const Test1 = () => (
-  <div>
-    Hello world from test 1, <Link to="heroes/123"> Go to page 2</Link>{' '}
-  </div>
-);
 const Test2 = () => <div>Hello world from test 2 </div>;
 
 const App = () => {
   const [heroes, setHeroes] = useState([]);
 
   useEffect(async () => {
-    console.log('heroes before:', heroes);
-    const heroesRes = await getHeroes();
-    setHeroes(heroesRes);
-    console.log('heroes after', heroesRes);
+    setHeroes(await getHeroes());
   }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route index path="/heroes" element={<Test1 />} />
+        <Route index path="/heroes" element={<AllHeroes heroes={heroes} />} />
         <Route path="heroes/:heroId" element={<Test2 />} />
-        <Route path="*" element={<Test1 />} />
+        <Route path="*" element={<AllHeroes heroes={heroes} />} />
       </Routes>
     </BrowserRouter>
   );
