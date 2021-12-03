@@ -7,17 +7,16 @@ import styled from 'styled-components';
 const Table = styled.table`
   border-collapse: collapse;
   margin: 0 2rem;
-  border: 0.07rem solid ${(props) => props.theme.colors.border};
 `;
 
 const Header = styled.th`
-  border: 0.07rem solid #979494;
+  border: ${(props) => props.theme.rems.border} solid ${(props) => props.theme.colors.border};
   padding: 0.5rem 1rem;
   text-align: left;
 `;
 
 const DataCell = styled.td`
-  border: 0.07rem solid #979494;
+  border: ${(props) => props.theme.rems.border} solid ${(props) => props.theme.colors.border};
   padding: 0.5rem 1rem;
   min-width: 8rem;
 `;

@@ -7,6 +7,9 @@ export const themes = {
       border: '#c4cdd3',
       hover: 'cornsilk'
     },
+    rems: {
+      border: '0.07rem'
+    },
     fontFamily: 'sans-serif'
   }
 };
