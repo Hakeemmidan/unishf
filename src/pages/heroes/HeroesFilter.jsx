@@ -9,7 +9,6 @@ import { getHeroes } from '../../utils/mock_api';
 const HeroesFilterContainer = styled.div`
   border: ${(props) => props.theme.rems.border} solid ${(props) => props.theme.colors.border};
   height: fit-content;
-  min-width: 10rem;
   padding: 0.5rem 1rem;
 `;
 
@@ -24,7 +23,6 @@ const TogglableContainer = styled.div`
 const SearchFieldContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 0.1rem;
   padding: 0 0.4rem;
   border: 0.15rem solid lightgray;
   &:focus-within {

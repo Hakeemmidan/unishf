@@ -58,13 +58,16 @@ export const HeroesTable = ({ heroes }) => {
       <TableHead>
         <TableRow>
           <Header>Hero Name</Header>
-          <Header>Power(s)</Header>
+          <Header>Power</Header>
           <Header>Rating</Header>
         </TableRow>
       </TableHead>
       <TableBody>
         {heroes.map((hero) => (
-          <ClickableRow onClick={() => navigate(`/heroes/${hero.id}`)} key={`hero_${hero.id}`}>
+          <ClickableRow
+            onClick={() => navigate(`/heroes/${hero.id}`, { state: { hero } })}
+            key={`hero_${hero.id}`}
+          >
             <LeftAlignedDataCell>{hero.name}</LeftAlignedDataCell>
             <LeftAlignedDataCell>{hero.power}</LeftAlignedDataCell>
             <DataCell>

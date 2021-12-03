@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { HeroesTable } from './HeroesTable';
 import { HeroesFilter } from './HeroesFilter';
 
-const AllHeroesPageContainer = styled.div`
+const AlignInPage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,17 +12,18 @@ const AllHeroesPageContainer = styled.div`
   min-height: 70vh;
 `;
 
-const DisplayFlex = styled.div`
+const AllHeroesContainer = styled.div`
   display: flex;
+  max-width: 80vw;
 `;
 
 export const AllHeroes = ({ heroes, setHeroes }) => (
-  <AllHeroesPageContainer>
-    <DisplayFlex>
+  <AlignInPage>
+    <AllHeroesContainer>
       <HeroesFilter setHeroes={setHeroes} />
       <HeroesTable heroes={heroes} />
-    </DisplayFlex>
-  </AllHeroesPageContainer>
+    </AllHeroesContainer>
+  </AlignInPage>
 );
 
 AllHeroes.propTypes = {

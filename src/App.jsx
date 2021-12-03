@@ -3,9 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { themes } from './utils/themes';
 import { AllHeroes } from './pages/heroes/Main';
+import { HeroProfile } from './pages/heroes/:heroId/Main';
 import { getHeroes } from './utils/mock_api';
-
-const Test2 = () => <div>Hello world from test 2 </div>;
 
 const AppContainer = styled.div`
   font-family: ${(props) => props.theme.fontFamily};
@@ -31,7 +30,7 @@ const App = () => {
               path="/heroes"
               element={<AllHeroes heroes={heroes} setHeroes={setHeroes} />}
             />
-            <Route path="heroes/:heroId" element={<Test2 />} />
+            <Route path="heroes/:heroId" element={<HeroProfile />} />
             <Route path="*" element={<AllHeroes heroes={heroes} setHeroes={setHeroes} />} />
           </Routes>
         </BrowserRouter>
