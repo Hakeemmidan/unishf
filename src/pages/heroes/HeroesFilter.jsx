@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Collapsible from 'react-collapsible';
 import { IoMdSearch, IoMdFunnel } from 'react-icons/io';
 import { BsToggleOff, BsToggleOn } from 'react-icons/bs';
+import { getHeroes } from '../../utils/mock_api';
 
 const HeroesFilterContainer = styled.div`
   border: ${(props) => props.theme.rems.border} solid ${(props) => props.theme.colors.border};
@@ -66,14 +67,24 @@ const UpsideDownIoMdFunnel = styled(IoMdFunnel)`
   transform: scaleY(-1);
 `;
 
-export const HeroesFilter = () => {
+export const HeroesFilter = ({ setHeroes }) => {
   const [inputVal, setInputVal] = useState('');
   const [collapsibleIsOpen, setCollapsibleIsOpen] = useState(false);
   const [toggleIsOn, setToggleIsOn] = useState(false);
 
-  const handleInputChange = (e) => {
-    // search
+  const handleInputChange = async (e) => {
     setInputVal(e.target.value);
+    setHeroes(await getHeroes(e.target.value));
+  };
+
+  const handleSortByPowerToggle = async () => {
+    const newToggleIsOn = !toggleIsOn;
+    if (newToggleIsOn) {
+      setHeroes(await getHeroes(inputVal, 'power'));
+    } else {
+      setHeroes(await getHeroes(inputVal, 'name'));
+    }
+    setToggleIsOn(newToggleIsOn);
   };
 
   return (
@@ -96,9 +107,9 @@ export const HeroesFilter = () => {
           <SortContainer>
             <SortByPowerTxtContainer>Sort by Power </SortByPowerTxtContainer>
             {toggleIsOn ? (
-              <ColoredBsToggleOn size={30} onClick={() => setToggleIsOn(false)} />
+              <ColoredBsToggleOn size={30} onClick={handleSortByPowerToggle} />
             ) : (
-              <BsToggleOff size={30} onClick={() => setToggleIsOn(true)} />
+              <BsToggleOff size={30} onClick={handleSortByPowerToggle} />
             )}
           </SortContainer>
         </CollapsibleChildrenContainer>
@@ -113,6 +124,10 @@ const Trigger = ({ collapsibleIsOpen }) => (
     {collapsibleIsOpen ? <UpsideDownIoMdFunnel /> : <IoMdFunnel />}
   </TogglableContainer>
 );
+
+HeroesFilter.propTypes = {
+  setHeroes: PropTypes.func.isRequired
+};
 
 Trigger.propTypes = {
   collapsibleIsOpen: PropTypes.bool.isRequired

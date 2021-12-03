@@ -26,9 +26,13 @@ const App = () => {
       <AppContainer>
         <BrowserRouter>
           <Routes>
-            <Route index path="/heroes" element={<AllHeroes heroes={heroes} />} />
+            <Route
+              index
+              path="/heroes"
+              element={<AllHeroes heroes={heroes} setHeroes={setHeroes} />}
+            />
             <Route path="heroes/:heroId" element={<Test2 />} />
-            <Route path="*" element={<AllHeroes heroes={heroes} />} />
+            <Route path="*" element={<AllHeroes heroes={heroes} setHeroes={setHeroes} />} />
           </Routes>
         </BrowserRouter>
       </AppContainer>

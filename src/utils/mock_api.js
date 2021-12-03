@@ -1,5 +1,7 @@
-export const getHeroes = () => {
-  return Promise.resolve([
+import { filterByNameAndPower, sortBy } from './general';
+
+export const getHeroes = (filterInput = '', sortByCol = 'name') => {
+  let res = [
     {
       id: 1,
       name: 'Tim Bereners-Lee',
@@ -22,5 +24,13 @@ export const getHeroes = () => {
       rating: 4,
       image: 'https://i.pinimg.com/736x/6b/fd/ff/6bfdff0e8ddd4526c97f0ca38fb0b297.jpg'
     }
-  ]);
+  ];
+
+  if (filterInput) {
+    res = filterByNameAndPower(res, filterInput);
+  }
+
+  res = sortBy(res, sortByCol);
+
+  return Promise.resolve(res);
 };

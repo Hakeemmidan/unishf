@@ -1,4 +1,4 @@
-import { filterByNameAndPower, sortByPower } from '../utils/main';
+import { filterByNameAndPower, sortBy } from '../utils/main';
 
 describe('filterByNameAndPower', () => {
   it('should return empty array if no rows', () => {
@@ -30,20 +30,22 @@ describe('filterByNameAndPower', () => {
   });
 });
 
-describe('sortByPower', () => {
+describe('sortBy', () => {
   it('should return empty array if no rows', () => {
     const rows = [];
-    const result = sortByPower(rows);
+    const result = sortBy(rows, 'power');
     expect(result).toEqual([]);
   });
 
-  it('should return rows sorted by power', () => {
+  it('should return rows sorted by selected column', () => {
     const rows = [
-      { name: 'test', power: 'test2' },
-      { name: 'test', power: 'test' },
-      { name: 'test', power: 'test3' }
+      { name: 'b', power: 'test2' },
+      { name: 'a', power: 'test' },
+      { name: 'c', power: 'test3' }
     ];
-    const result = sortByPower(rows);
+    let result = sortBy(rows, 'power');
     expect(result).toEqual(rows.sort((a, b) => a.power.localeCompare(b.power)));
+    result = sortBy(rows, 'name');
+    expect(result).toEqual(rows.sort((a, b) => a.name.localeCompare(b.name)));
   });
 });

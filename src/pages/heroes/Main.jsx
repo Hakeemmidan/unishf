@@ -16,17 +16,16 @@ const DisplayFlex = styled.div`
   display: flex;
 `;
 
-export const AllHeroes = ({ heroes }) => {
-  return (
-    <AllHeroesPageContainer>
-      <DisplayFlex>
-        <HeroesFilter />
-        <HeroesTable heroes={heroes} />
-      </DisplayFlex>
-    </AllHeroesPageContainer>
-  );
-};
+export const AllHeroes = ({ heroes, setHeroes }) => (
+  <AllHeroesPageContainer>
+    <DisplayFlex>
+      <HeroesFilter setHeroes={setHeroes} />
+      <HeroesTable heroes={heroes} />
+    </DisplayFlex>
+  </AllHeroesPageContainer>
+);
 
 AllHeroes.propTypes = {
-  heroes: PropTypes.arrayOf(PropTypes.object).isRequired
+  heroes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setHeroes: PropTypes.func.isRequired
 };
