@@ -17,7 +17,7 @@ const HeroesFilterContainer = styled.div`
   }
 `;
 
-const TogglableContainer = styled.div`
+const ToggleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   &:hover {
@@ -91,13 +91,13 @@ export const HeroesFilter = ({ setHeroes }) => {
   };
 
   return (
-    <HeroesFilterContainer>
+    <HeroesFilterContainer data-testid="heroes-filter-container">
       <Collapsible
         onOpening={() => setCollapsibleIsOpen(true)}
         onClosing={() => setCollapsibleIsOpen(false)}
         trigger={<Trigger collapsibleIsOpen={collapsibleIsOpen} />}
       >
-        <CollapsibleChildrenContainer>
+        <CollapsibleChildrenContainer data-testid="collapsible-children-container">
           <SearchFieldContainer>
             <IoMdSearch size={20} />
             <SearchFieldInput
@@ -122,10 +122,10 @@ export const HeroesFilter = ({ setHeroes }) => {
 };
 
 const Trigger = ({ collapsibleIsOpen }) => (
-  <TogglableContainer>
+  <ToggleContainer data-testid="toggle-container">
     <>Filters</>
     {collapsibleIsOpen ? <UpsideDownIoMdFunnel /> : <IoMdFunnel />}
-  </TogglableContainer>
+  </ToggleContainer>
 );
 
 HeroesFilter.propTypes = {

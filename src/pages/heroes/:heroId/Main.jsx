@@ -43,7 +43,7 @@ export const HeroProfile = () => {
   const hero = state?.hero;
 
   return (
-    <HeroProfileContainer>
+    <HeroProfileContainer data-testid="hero-profile-page-container">
       <StyledHtmlRoot />
       <Card>
         <Row />

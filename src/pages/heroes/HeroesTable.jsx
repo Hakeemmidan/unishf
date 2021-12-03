@@ -106,7 +106,7 @@ export const HeroesTable = ({ heroes }) => {
   }
 
   return (
-    <Table>
+    <Table data-testid="heroes-table">
       <TableHead>
         <TableRow>
           <Header>Hero Name</Header>
@@ -116,8 +116,12 @@ export const HeroesTable = ({ heroes }) => {
       </TableHead>
       <TableBody>
         {heroes.map((hero) => (
-          <ClickableRow onClick={() => handleRowClick(hero)} key={`hero_${hero.id}`}>
-            <LeftAlignedDataCell>{hero.name}</LeftAlignedDataCell>
+          <ClickableRow
+            onClick={() => handleRowClick(hero)}
+            key={`hero_${hero.id}`}
+            data-testid="heroes-table-row"
+          >
+            <LeftAlignedDataCell data-testid="hero-name">{hero.name}</LeftAlignedDataCell>
             <LeftAlignedDataCell>{hero.power}</LeftAlignedDataCell>
             <DataCell>{renderStars(hero.id, hero.rating)}</DataCell>
           </ClickableRow>
@@ -133,11 +137,11 @@ export const HeroesTable = ({ heroes }) => {
 };
 
 const MobileHeroesTableItem = ({ hero, handleRowClick }) => (
-  <MobileTable>
+  <MobileTable data-testid="mobile-heroes-table">
     <TableBody>
       <ClickableRow onClick={() => handleRowClick(hero)}>
         <MobileHeader>Hero name</MobileHeader>
-        <LeftAlignedDataCell>{hero.name}</LeftAlignedDataCell>
+        <LeftAlignedDataCell data-testid="hero-name">{hero.name}</LeftAlignedDataCell>
       </ClickableRow>
       <ClickableRow onClick={() => handleRowClick(hero)}>
         <MobileHeader>Powers</MobileHeader>
