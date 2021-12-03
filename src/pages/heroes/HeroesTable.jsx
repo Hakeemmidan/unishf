@@ -53,8 +53,8 @@ export const HeroesTable = ({ heroes }) => {
     <Table>
       <TableHead>
         <TableRow>
-          <Header>Name</Header>
-          <Header>Power</Header>
+          <Header>Hero Name</Header>
+          <Header>Power(s)</Header>
           <Header>Rating</Header>
         </TableRow>
       </TableHead>
