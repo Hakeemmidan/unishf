@@ -21,6 +21,10 @@ const DataCell = styled.td`
   min-width: 8rem;
 `;
 
+const LeftAlignedDataCell = styled(DataCell)`
+  text-align: left;
+`;
+
 const TableHead = styled.thead``;
 
 const TableBody = styled.tbody``;
@@ -61,8 +65,8 @@ export const HeroesTable = ({ heroes }) => {
       <TableBody>
         {heroes.map((hero) => (
           <ClickableRow onClick={() => navigate(`/heroes/${hero.id}`)} key={`hero_${hero.id}`}>
-            <DataCell>{hero.name}</DataCell>
-            <DataCell>{hero.power}</DataCell>
+            <LeftAlignedDataCell>{hero.name}</LeftAlignedDataCell>
+            <LeftAlignedDataCell>{hero.power}</LeftAlignedDataCell>
             <DataCell>
               <StarsContainer>
                 {[...Array(5)].map((_, i) => {
