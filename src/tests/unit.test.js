@@ -1,4 +1,4 @@
-import { filterByNameAndPower, sortBy } from '../utils/main';
+import { filterByNameAndPower, sortBy } from '../utils/general';
 
 describe('filterByNameAndPower', () => {
   it('should return empty array if no rows', () => {
@@ -8,18 +8,22 @@ describe('filterByNameAndPower', () => {
     expect(result).toEqual([]);
   });
 
-  it('should return empty array if no filter', () => {
+  it("should return argument 'rows' when not given filter input", () => {
     const rows = [{ name: 'test', power: 'test' }];
     const filter = '';
     const result = filterByNameAndPower(rows, filter);
-    expect(result).toEqual([]);
+    expect(JSON.stringify(result)).toEqual(JSON.stringify(rows));
   });
 
-  it('should return rows if filter matches', () => {
-    const rows = [{ name: 'test', power: 'test' }];
-    const filter = 'test';
+  it('should return correct rows if filter matches', () => {
+    const rows = [
+      { name: 'test', power: 'test' },
+      { name: 'test2', power: 'test2' }
+    ];
+    const filter = 'test2';
     const result = filterByNameAndPower(rows, filter);
-    expect(result).toEqual(rows);
+    const expectedRes = [{ name: 'test2', power: 'test2' }];
+    expect(result).toEqual(expectedRes);
   });
 
   it('should return empty array if filter does not match', () => {

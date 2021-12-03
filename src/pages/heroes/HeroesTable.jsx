@@ -86,7 +86,6 @@ export const HeroesTable = ({ heroes }) => {
   }, []);
 
   const handleResize = () => {
-    console.log('hello');
     if (window.innerWidth <= parseInt(themes.mainLight.mobileBreakpoint)) {
       setIsMobile(true);
     } else {
