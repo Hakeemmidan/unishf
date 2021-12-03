@@ -15,6 +15,9 @@ const AlignInPage = styled.div`
 const AllHeroesContainer = styled.div`
   display: flex;
   max-width: 80vw;
+  @media (max-width: ${(props) => props.theme.mobileBreakpoint}) {
+    flex-direction: column;
+  }
 `;
 
 export const AllHeroes = ({ heroes, setHeroes }) => (

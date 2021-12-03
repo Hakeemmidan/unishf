@@ -10,6 +10,11 @@ const HeroesFilterContainer = styled.div`
   border: ${(props) => props.theme.rems.border} solid ${(props) => props.theme.colors.border};
   height: fit-content;
   padding: 0.5rem 1rem;
+  @media (max-width: ${(props) => props.theme.mobileBreakpoint}) {
+    margin-bottom: 2rem;
+    align-self: center;
+    width: 90vw;
+  }
 `;
 
 const TogglableContainer = styled.div`
@@ -41,7 +46,7 @@ const SearchFieldInput = styled.input`
 const CollapsibleChildrenContainer = styled.div`
   min-height: 9rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 `;

@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import styled from 'styled-components';
+import { themes } from '../../utils/themes';
 
 const Table = styled.table`
   border-collapse: collapse;
   margin: 0 2rem;
+`;
+
+const MobileTable = styled(Table)`
+  width: calc(90vw + 2rem);
+  align-self: center;
+  margin-bottom: 1rem;
 `;
 
 const Header = styled.th`
@@ -23,6 +30,10 @@ const DataCell = styled.td`
 
 const LeftAlignedDataCell = styled(DataCell)`
   text-align: left;
+`;
+
+const MobileHeader = styled(LeftAlignedDataCell)`
+  width: 30%;
 `;
 
 const TableHead = styled.thead``;
@@ -50,8 +61,50 @@ const FilledStar = styled(AiFillStar)`
 
 const UnfilledStar = styled(AiOutlineStar)``;
 
+const renderStars = (id, rating) => {
+  return (
+    <StarsContainer>
+      {[...Array(5)].map((_, i) => {
+        if (i + 1 <= rating) {
+          return <FilledStar key={`hero_${id}_star_${i}`} />;
+        } else {
+          return <UnfilledStar key={`hero_${id}_star_${i}`} />;
+        }
+      })}
+    </StarsContainer>
+  );
+};
+
 export const HeroesTable = ({ heroes }) => {
+  const [isMobile, setIsMobile] = useState(false);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize, false);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize, false);
+  }, []);
+
+  const handleResize = () => {
+    console.log('hello');
+    if (window.innerWidth <= parseInt(themes.mainLight.mobileBreakpoint)) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
+
+  const handleRowClick = (hero) => navigate(`/heroes/${hero.id}`, { state: { hero } });
+
+  if (isMobile) {
+    return (
+      <>
+        {heroes.map((hero) => (
+          <MobileHeroesTableItem key={hero.id} hero={hero} handleRowClick={handleRowClick} />
+        ))}
+      </>
+    );
+  }
 
   return (
     <Table>
@@ -64,23 +117,10 @@ export const HeroesTable = ({ heroes }) => {
       </TableHead>
       <TableBody>
         {heroes.map((hero) => (
-          <ClickableRow
-            onClick={() => navigate(`/heroes/${hero.id}`, { state: { hero } })}
-            key={`hero_${hero.id}`}
-          >
+          <ClickableRow onClick={() => handleRowClick(hero)} key={`hero_${hero.id}`}>
             <LeftAlignedDataCell>{hero.name}</LeftAlignedDataCell>
             <LeftAlignedDataCell>{hero.power}</LeftAlignedDataCell>
-            <DataCell>
-              <StarsContainer>
-                {[...Array(5)].map((_, i) => {
-                  if (i + 1 <= hero.rating) {
-                    return <FilledStar key={`hero_${hero.id}_star_${i}`} />;
-                  } else {
-                    return <UnfilledStar key={`hero_${hero.id}_star_${i}`} />;
-                  }
-                })}
-              </StarsContainer>
-            </DataCell>
+            <DataCell>{renderStars(hero.id, hero.rating)}</DataCell>
           </ClickableRow>
         ))}
         <TableRow>
@@ -91,6 +131,30 @@ export const HeroesTable = ({ heroes }) => {
       </TableBody>
     </Table>
   );
+};
+
+const MobileHeroesTableItem = ({ hero, handleRowClick }) => (
+  <MobileTable>
+    <TableBody>
+      <ClickableRow onClick={() => handleRowClick(hero)}>
+        <MobileHeader>Hero name</MobileHeader>
+        <LeftAlignedDataCell>{hero.name}</LeftAlignedDataCell>
+      </ClickableRow>
+      <ClickableRow onClick={() => handleRowClick(hero)}>
+        <MobileHeader>Powers</MobileHeader>
+        <LeftAlignedDataCell>{hero.power}</LeftAlignedDataCell>
+      </ClickableRow>
+      <ClickableRow onClick={() => handleRowClick(hero)}>
+        <MobileHeader>Rate</MobileHeader>
+        <LeftAlignedDataCell>{renderStars(hero.id, hero.rating)}</LeftAlignedDataCell>
+      </ClickableRow>
+    </TableBody>
+  </MobileTable>
+);
+
+MobileHeroesTableItem.propTypes = {
+  hero: PropTypes.object.isRequired,
+  handleRowClick: PropTypes.func.isRequired
 };
 
 HeroesTable.propTypes = {

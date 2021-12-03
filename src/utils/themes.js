@@ -10,6 +10,7 @@ export const themes = {
     rems: {
       border: '0.07rem'
     },
+    mobileBreakpoint: '1000px',
     fontFamily: 'sans-serif'
   }
 };
